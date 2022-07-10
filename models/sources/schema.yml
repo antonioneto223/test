@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_data_challenge
+    columns: 
+      - name: loadsmart_id
+        tests:
+          - not_null:
+              severity: warn 
+          - unique:
+              severity: warn

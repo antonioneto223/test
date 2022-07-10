@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: bronze
+    schema: dbt_challenge_data_1
+    tables:       
+      - name: data_challenge_source
+        identifier: Source principal
