@@ -1,0 +1,75 @@
+version: 2
+
+models:
+  - name: lanes_dim
+    columns:
+      - name: lane_name
+        tests:
+          - not_null
+          - unique:
+              severity: warn
+        description: lane name used as primary ID
+      - name: mileage_median
+        description: Median value of mileage for this lane
+  - name: carriers_dim
+    columns:
+      - name: carrier_id
+        tests:
+          - not_null
+          - unique:
+              severity: warn 
+        description: Carrier ID obtained from carrier_name string
+      - name: vip_carrier
+        description: Is carrier VIP (boolean)
+      - name: has_macropoint_tracking
+        description: Has macropoint tracking (boolean)
+      - name: has_edi_tracking
+        description: Has EDI tracking (boolean)
+      - name: has_mobile_app_tracking
+        description: Has mobile App tracking (boolena)
+      - name: carrier_dropped_us_count_total
+        description: total number of carrier_dropped_us_count
+      - name: carrier_first_quote_date
+        description: first quote date registered for carrier
+  - name: shippers_dim
+    columns:
+      - name: shipper_id
+        tests:
+          - not_null
+          - unique:
+              severity: warn 
+        description: shipper ID obtained from shipper_name string
+      - name: shirpper_first_quote_date
+        description: first quote date registered for carrier
+  - name: quote_fact
+    columns:
+      - name: loadsmart_id
+        tests:
+          - not_null
+          - unique:
+              severity: warn 
+      - name: lane
+      - name: quote_date
+      - name: book_date
+      - name: source_date
+      - name: pickup_date
+      - name: delivery_date
+      - name: book_price
+      - name: source_price
+      - name: pnl
+      - name: mileage as actual_mileage
+      - name: equipment_type
+      - name: carrier_rating
+      - name: sourcing_channel
+      - name: carrier_dropped_us_count as current_carrier_dropped_us_count
+      - name: carrier_id
+      - name: shipper_id
+      - name: carrier_on_time_to_pickup 
+      - name: carrier_on_time_to_delivery
+      - name: carrier_on_time_overall 
+      - name: pickup_appointment_time  
+      - name: delivery_appointment_time 
+      - name: contracted_load
+      - name: load_booked_autonomously 
+      - name: load_sourced_autonomously 
+      - name: load_was_cancelled

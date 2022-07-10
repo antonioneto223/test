@@ -1,0 +1,30 @@
+SELECT 
+
+loadsmart_id,
+lane,
+quote_date,
+book_date,
+source_date,
+pickup_date,
+delivery_date,
+book_price,
+source_price,
+pnl,
+mileage as actual_mileage,
+equipment_type,
+carrier_rating,
+sourcing_channel,
+carrier_dropped_us_count as current_carrier_dropped_us_count,
+SUBSTRING(carrier_name,8) as carrier_id,
+SUBSTRING(shipper_name,8) as shipper_id,
+CAST(carrier_on_time_to_pickup as boolean) as carrier_on_time_to_pickup,
+CAST(carrier_on_time_to_delivery as boolean) as carrier_on_time_to_delivery,
+CAST(carrier_on_time_overall as boolean) as carrier_on_time_overall,
+CAST(pickup_appointment_time as timestamp) as pickup_appointment_time,
+CAST(delivery_appointment_time as timestamp) as delivery_appointment_time,
+CAST(contracted_load as boolean) as contracted_load,
+CAST(load_booked_autonomously as boolean) as load_booked_autonomously,
+CAST(load_sourced_autonomously as boolean) as load_sourced_autonomously,
+CAST(load_was_cancelled as boolean) as load_was_cancelled
+
+FROM {{ ref ('stg_data_challenge') }} 
